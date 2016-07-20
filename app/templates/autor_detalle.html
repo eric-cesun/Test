@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{%block content%}
+<style media="screen">
+  h2,h3{
+    font-family: arial;
+  }
+  p{
+    text-align: justify;
+    font-size: 120%;
+    font-family: arial;
+  }
+</style>
+<h2>Autor</h2>
+{%if detalle.imagen%}
+<h2>
+  <span style="color:blue;"><strong>Foto Autor: </strong></span>
+</h2>
+<img src="{{detalle.imagen.url}}" alt="" class="img-responsive">
+{%endif%}
+            <p><span style="color:red;"><strong>nombre autor: </strong></span>{{detalle.nombreCompleto}}</p>
+            <p><span style="color:blue;"><strong>correo electronico: </strong></span>{{detalle.correo}}</p>
+            <p><span style="color:blue;"><strong>bibliografia </strong></span>{{detalle.bibliografia}}</p>
+            <p><span style="color:blue;"><strong>nacionalidad </strong></span>{{detalle.nacionalidad}}</p>
+            <a href="{%url "home"%}" class="btn btn-lg btn-success" role="button">incio</a>
+{%endblock%}

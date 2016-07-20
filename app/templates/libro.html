@@ -1,0 +1,62 @@
+{% extends "base.html"%}
+{%block content%}
+{%if messages%}
+<ul class="messages">
+  {%for messages in messages%}
+  <li{%if messages.tags%} class="{{messages.tags}}" {%endif%}>{{messages}}</li>
+  {%endfor%}
+</ul>
+{%endif%}
+<style media="screen">
+  h2,h3{
+    font-family: arial;
+  }
+  p{
+    text-align: justify;
+    font-size: 110%;
+    font-family: arial;
+  }
+</style>
+<div class="colum-sm-12">
+
+<div class="thumbanail">
+  <div class="caprion">
+    <h2>Libro</h2>'
+      {% for obj in lista%}
+      {%if obj.imagen%}
+      <img src="{{obj.imagen.url}}" alt="" class="img-responsive">
+      {%endif%}
+    <ul>
+      <h3><a href="{%url "editar" id=obj.id%}"> <span style="color:blue;"><strong>Titulo </strong></span>{{obj.titulo}}</a> <small> {{obj.creado|timesince}}</small> </h3>
+      <p style="list-style:none;"> <span style="color:blue;"><strong>Contenido </strong></span>{{obj.contenido|linebreaks|truncatechars:750}}</p>
+      <p>
+
+      <a href="{%url "editar" id=obj.id%}" class="btn btn-primary btn-lg" role="button">editar</a>
+      <a href="{%url "detalle" id=obj.id%}" class="btn btn-lg btn-success" role="button">ver</a>
+      <a href="{%url "borrar" id=obj.id%}" class="btn btn-lg btn-danger" role="button">borrar</a>
+
+    </p>
+    </ul>
+    {%endfor%}
+  </div>
+</div>
+</div>
+
+
+<div class="pagination">
+<span class="step-links">
+{% if lista.has_previous %}
+<a href="?page={{ lista.previous_page_number }}">previous</a>
+{% endif %}
+
+<span class="current">
+Page {{ lista.number }} of {{ lista.paginator.num_pages }}.
+</span>
+
+{% if lista.has_next %}
+<a href="?page={{lista.next_page_number }}">next</a>
+{% endif %}
+</span>
+</div>﻿
+
+{%endblock%}

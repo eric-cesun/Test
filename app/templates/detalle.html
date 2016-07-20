@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{%block content%}
+<style media="screen">
+  h2{
+    font-family: arial;
+  }
+  p{
+    text-align: justify;
+    font-size: 110%;
+    font-family: arial;
+  }
+</style>
+<h2>Libro</h2>
+<h2>
+  {{detalle.titulo}}
+</h2>
+{%if detalle.imagen%}
+<img src="{{detalle.imagen.url}}" alt="" class="img-responsive">
+{%endif%}
+<br>
+            <p>{{detalle.contenido}}</p>
+            <p><a href="{%url "detallecategoria" id=detalle.categoria.id%}"><span style="color:blue;"><strong>Categoria </strong></span>{{detalle.categoria.categoria}}</a></p>
+            <p> <span style="color:blue;"><strong>Autor </strong></span>{{detalle.autor.nombreCompleto}}</p>
+            <a href="{%url "home"%}" class="btn btn-lg btn-success" role="button">incio</a>
+{%endblock%}

@@ -1,0 +1,47 @@
+{% extends "base.html"%}
+{%block content%}
+{%if messages%}
+<ul class="messages">
+  {%for messages in messages%}
+  <li{%if messages.tags%} class="{{messages.tags}}" {%endif%}>{{messages}}</li>
+  {%endfor%}
+</ul>
+{%endif%}
+<div class="colum-sm-12">
+
+<div class="thumbanail">
+  <div class="caprion">
+    <h2>Categoria</h2>
+      {%for obj in lista.categoria%}
+    <ul>
+      <h3><a href="{%url "editarcategoria" id=obj.id%}">{{obj.Categoria}}</a><small> {{obj.creada|timesince}}</small></h3>
+      <p>
+      <a href="{%url "editarcategoria" id=obj.id%}" class="btn btn-primary btn-lg" role="button">editar</a>
+      <a href="{%url "detallecategoria" id=obj.id%}" class="btn btn-lg btn-success" role="button">ver</a>
+      <a href="{%url "borrarca" id=obj.id%}" class="btn btn-lg btn-danger" role="button">borrar</a>
+
+    </p>
+    </ul>
+    {%endfor%}
+  </div>
+</div>
+</div>
+
+
+<div class="pagination">
+<span class="step-links">
+{% if lista.has_previous %}
+<a href="?page={{ lista.previous_page_number }}">previous</a>
+{% endif %}
+
+<span class="current">
+Page {{ lista.number }} of {{ lista.paginator.num_pages }}.
+</span>
+
+{% if lista.has_next %}
+<a href="?page={{lista.next_page_number }}">next</a>
+{% endif %}
+</span>
+</div>﻿
+
+{%endblock%}

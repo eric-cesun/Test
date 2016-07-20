@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{%block content%}
+
+  <div class="colum-sm-12">
+
+  <div class="thumbanail">
+    <div class="caprion">
+  <h2>Libros</h2>'
+    {% for obj in lista%}
+    <style media="screen">
+      h2,h3{
+        font-family: arial;
+      }
+      p{
+        text-align: justify;
+        font-size: 110%;
+        font-family: arial;
+      }
+    </style>
+    <h3><span style="color:blue;"><strong>titulo </strong></span>{{obj.titulo}}</h3>
+    <p style="list-style:none;">{{obj.contenido|linebreaks|truncatechars:1050}}</p>
+    <p>
+      <p><span style="color:blue;"><strong>Autor </strong></span>{{obj.autor.nombreCompleto}}</p>
+      <p>
+        <span style="color:blue;"><strong>nacionalidad </strong></span>
+        {{obj.autor.nacionalidad}}
+      </p>
+  </p>
+  {%if obj.imagen%}
+    <span style="color:blue;"><strong>Foto de Portada </strong></span>
+  <img src="{{obj.imagen.url}}" alt="" class="img-responsive">
+  {%endif%}
+  <a href="{%url "detalle" id=obj.id%}" class="btn btn-primary btn-lg" role="button">ver libro</a>
+  <a href="{%url "detalleautor" id=obj.autor.id%}" class="btn btn-lg btn-success" role="button">ver autor</a>
+  {%endfor%}
+</div>
+</div>
+</div>
+<div class="pagination">
+<span class="step-links">
+{% if lista.has_previous %}
+<a href="?page={{ lista.previous_page_number }}">previous</a>
+{% endif %}
+
+<span class="current">
+Page {{ lista.number }} of {{ lista.paginator.num_pages }}.
+</span>
+
+{% if lista.has_next %}
+<a href="?page={{lista.next_page_number }}">next</a>
+{% endif %}
+</span>
+</div>﻿
+<br>
+    <a href="/libro/" class="btn btn-primary btn-lg">libros</a>
+    <a href="/crear" class="btn btn-primary btn-lg">crear libro</a>
+    <a href="/autor/" class="btn btn-primary btn-lg">autor</a>
+    <a href="/crearautor/" class="btn btn-primary btn-lg">crear autor</a>
+    <a href="/crearcategoria/" class="btn btn-primary btn-lg">crear categoria</a>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  {%endblock%}

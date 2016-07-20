@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{%block content%}
+<h2>Categoria</h2>
+
+            <p><span style="color:blue;"><strong>Tipo </strong></span>{{detalle.categoria}}</p>
+            <p><span style="color:blue;"><strong>Descripcion </strong></span>{{detalle.descripcion}}</p>
+            <a href="{%url "home"%}" class="btn btn-lg btn-success" role="button">incio</a>
+{%endblock%}
+  
